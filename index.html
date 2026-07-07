@@ -1,0 +1,1448 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NUAMED — measurable health environments</title>
+    <meta
+      name="description"
+      content="NUAMED turns wellness cities, medical districts and founder campuses into measurable health environments — and offers one AI care relationship to the people inside them."
+    />
+    <meta
+      property="og:title"
+      content="NUAMED — measurable health environments"
+    />
+    <meta
+      property="og:description"
+      content="We learn your normal, watch the weak signals, and close the loop before you ask."
+    />
+    <meta property="og:type" content="website" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%234a5d4e' stroke-width='3' stroke-dasharray='52 17' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='16' r='3.4' fill='%234a5d4e'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,420;9..144,560&family=Inter:wght@400;450;520;600&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <style>
+      :root {
+        --paper: #faf8f3;
+        --paper-deep: #f3efe6;
+        --ink: #211f1a;
+        --ink-soft: #5c5850;
+        --ink-faint: #8b867c;
+        --moss: #44523f;
+        --moss-soft: #6b7a63;
+        --focus: #9bab88;
+        --danger: #8a5e31;
+        --danger-bg: #fbf3ea;
+        --hairline: rgba(33, 31, 26, 0.14);
+        --hairline-soft: rgba(33, 31, 26, 0.08);
+        --card: #fffdf9;
+        --serif: "Fraunces", Georgia, "Times New Roman", serif;
+        --sans: "Inter", -apple-system, "Segoe UI", sans-serif;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      :target {
+        scroll-margin-top: 88px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-weight: 400;
+        font-size: 17px;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        min-width: 320px;
+      }
+      ::selection {
+        background: #dfe6d8;
+      }
+      main {
+        display: block;
+      }
+      .wrap {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      @media (max-width: 420px) {
+        .wrap {
+          padding: 0 20px;
+        }
+      }
+      .col {
+        max-width: 660px;
+        margin: 0 auto;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      .skip-link {
+        position: fixed;
+        top: 14px;
+        left: 14px;
+        z-index: 40;
+        transform: translateY(-160%);
+        background: var(--ink);
+        color: var(--paper);
+        padding: 10px 14px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .skip-link:focus-visible {
+        transform: translateY(0);
+        outline: 3px solid var(--focus);
+        outline-offset: 3px;
+      }
+
+      /* ---------- nav ---------- */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(250, 248, 243, 0.94);
+        background: color-mix(in srgb, var(--paper) 88%, transparent);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--hairline-soft);
+      }
+      .nav-in {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 24px;
+        max-width: 1040px;
+        margin: 0 auto;
+      }
+      .mark {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: var(--ink);
+      }
+      .mark svg {
+        display: block;
+      }
+      .mark span {
+        font-family: var(--serif);
+        font-weight: 560;
+        font-size: 19px;
+        letter-spacing: 0.14em;
+      }
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        align-items: center;
+      }
+      .nav-links a {
+        color: var(--ink-soft);
+        text-decoration: none;
+        font-size: 14.5px;
+        font-weight: 450;
+        letter-spacing: 0.01em;
+      }
+      .nav-links a:hover {
+        color: var(--ink);
+      }
+      .mark:focus-visible,
+      .nav-links a:focus-visible,
+      .btn:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible {
+        outline: 3px solid var(--focus);
+        outline-offset: 4px;
+      }
+      @media (max-width: 560px) {
+        .nav-links a.hide-m {
+          display: none;
+        }
+      }
+
+      /* ---------- shared ---------- */
+      .eyebrow {
+        font-size: 12.5px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--moss-soft);
+        margin-bottom: 22px;
+      }
+      h1,
+      h2 {
+        font-family: var(--serif);
+        font-weight: 420;
+        letter-spacing: -0.01em;
+        text-wrap: balance;
+      }
+      h1 {
+        font-size: clamp(38px, 5.6vw, 58px);
+        line-height: 1.12;
+      }
+      h2 {
+        font-size: clamp(29px, 3.6vw, 38px);
+        line-height: 1.18;
+      }
+      .lede {
+        font-size: clamp(17.5px, 1.9vw, 19.5px);
+        line-height: 1.7;
+        color: var(--ink-soft);
+        text-wrap: pretty;
+      }
+      section {
+        padding: 120px 0;
+      }
+      @media (max-width: 640px) {
+        section {
+          padding: 84px 0;
+        }
+      }
+      html.js .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      html.js .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html.js .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--moss);
+        color: #fbfaf6;
+        text-decoration: none;
+        font-size: 15.5px;
+        font-weight: 520;
+        letter-spacing: 0.01em;
+        padding: 15px 30px;
+        min-height: 48px;
+        border-radius: 999px;
+        border: 1px solid var(--moss);
+        transition:
+          background 0.25s ease,
+          transform 0.25s ease;
+        cursor: pointer;
+        font-family: var(--sans);
+        line-height: 1.2;
+        text-align: center;
+      }
+      .btn:hover {
+        background: #37432f;
+        transform: translateY(-1px);
+      }
+      .btn:disabled {
+        cursor: wait;
+        opacity: 0.68;
+        transform: none;
+      }
+      .btn.ghost {
+        background: transparent;
+        color: var(--moss);
+        border: 1px solid rgba(68, 82, 63, 0.4);
+      }
+      .btn.ghost:hover {
+        background: rgba(68, 82, 63, 0.06);
+        transform: none;
+      }
+      .micro {
+        font-size: 13.5px;
+        color: var(--ink-faint);
+        margin-top: 14px;
+        letter-spacing: 0.01em;
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        padding: 130px 0 110px;
+        text-align: left;
+      }
+      @media (max-width: 640px) {
+        .hero {
+          padding: 84px 0 72px;
+        }
+      }
+      .hero .col {
+        max-width: 780px;
+        margin: 0;
+      }
+      .hero h1 {
+        margin: 0 0 28px;
+      }
+      .hero .lede {
+        max-width: 600px;
+        margin-bottom: 40px;
+      }
+
+      /* ---------- claim band ---------- */
+      .claim {
+        background: var(--paper-deep);
+        border-top: 1px solid var(--hairline-soft);
+        border-bottom: 1px solid var(--hairline-soft);
+        padding: 88px 0;
+      }
+      .claim p {
+        font-family: var(--serif);
+        font-weight: 340;
+        font-size: clamp(21px, 2.6vw, 27px);
+        line-height: 1.5;
+        max-width: 720px;
+        color: var(--ink);
+        text-wrap: balance;
+      }
+      .claim p b {
+        font-weight: 560;
+        color: var(--moss);
+      }
+
+      /* ---------- image band ---------- */
+      .image-band {
+        height: 52vh;
+        min-height: 420px;
+        background: var(--paper-deep);
+        border-top: 1px solid var(--hairline-soft);
+        border-bottom: 1px solid var(--hairline-soft);
+        overflow: hidden;
+      }
+      .image-band img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      @media (max-width: 640px) {
+        .image-band {
+          height: 34vh;
+          min-height: 240px;
+        }
+      }
+
+      /* ---------- steps ---------- */
+      .step {
+        display: grid;
+        grid-template-columns: 64px 1fr;
+        gap: 26px;
+        padding: 44px 0;
+        border-top: 1px solid var(--hairline-soft);
+      }
+      .step:first-of-type {
+        border-top: none;
+      }
+      .step .n {
+        font-family: var(--serif);
+        font-weight: 340;
+        font-size: 30px;
+        color: var(--ink-faint);
+      }
+      .step h3 {
+        font-family: var(--serif);
+        font-weight: 560;
+        font-size: 21.5px;
+        margin-bottom: 10px;
+        letter-spacing: -0.005em;
+      }
+      .step p {
+        color: var(--ink-soft);
+        max-width: 520px;
+      }
+      @media (max-width: 560px) {
+        .step {
+          grid-template-columns: 44px 1fr;
+          gap: 16px;
+          padding: 34px 0;
+        }
+      }
+      @media (max-width: 420px) {
+        h1 {
+          font-size: 34px;
+        }
+        h2 {
+          font-size: 28px;
+        }
+        .lede {
+          font-size: 16.5px;
+        }
+      }
+
+      .how-grid {
+        display: grid;
+        grid-template-columns: 1fr 380px;
+        gap: 72px;
+        align-items: center;
+      }
+      @media (max-width: 900px) {
+        .how-grid {
+          grid-template-columns: 1fr;
+          gap: 56px;
+        }
+      }
+
+      /* ---------- mock panels ---------- */
+      .panel {
+        background: var(--card);
+        border: 1px solid var(--hairline);
+        border-radius: 18px;
+        box-shadow:
+          0 24px 60px -32px rgba(33, 31, 26, 0.25),
+          0 2px 8px rgba(33, 31, 26, 0.04);
+        overflow: hidden;
+      }
+      .panel-head {
+        padding: 14px 20px;
+        border-bottom: 1px solid var(--hairline-soft);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      .panel-head .t {
+        font-size: 11.5px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+      }
+      .panel-head .d {
+        font-size: 12px;
+        color: var(--ink-faint);
+      }
+      @media (max-width: 420px) {
+        .panel-head {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 4px;
+        }
+      }
+      .panel-body {
+        padding: 20px;
+      }
+      @media (max-width: 420px) {
+        .panel-body {
+          padding: 16px;
+        }
+      }
+      .msg {
+        background: #f1eee6;
+        border-radius: 14px;
+        padding: 14px 16px;
+        margin-bottom: 12px;
+        font-size: 14.5px;
+        line-height: 1.6;
+        color: var(--ink);
+        max-width: 94%;
+      }
+      .msg .who {
+        display: block;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--moss-soft);
+        margin-bottom: 5px;
+      }
+      .msg.quiet {
+        background: transparent;
+        border: 1px dashed var(--hairline);
+        color: var(--ink-soft);
+      }
+      .ledger-row {
+        display: grid;
+        grid-template-columns: 74px 1fr auto;
+        gap: 14px;
+        padding: 13px 0;
+        border-top: 1px solid var(--hairline-soft);
+        font-size: 13.8px;
+        line-height: 1.5;
+        align-items: baseline;
+      }
+      .ledger-row:first-child {
+        border-top: none;
+      }
+      .ledger-row .d {
+        color: var(--ink-faint);
+        font-variant-numeric: tabular-nums;
+        font-size: 12.5px;
+      }
+      .ledger-row .what b {
+        font-weight: 600;
+      }
+      .ledger-row .what span {
+        display: block;
+        color: var(--ink-soft);
+        font-size: 13px;
+      }
+      @media (max-width: 460px) {
+        .ledger-row {
+          grid-template-columns: 1fr;
+          gap: 5px;
+        }
+        .ledger-row .d {
+          font-size: 12px;
+        }
+        .tag {
+          justify-self: start;
+        }
+      }
+      .tag {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 3px 9px;
+        border-radius: 999px;
+        white-space: nowrap;
+      }
+      .tag.kept {
+        background: #e7ecdf;
+        color: #3d4c36;
+      }
+      .tag.stopped {
+        background: #efe7dc;
+        color: #7a5b3a;
+      }
+      .tag.watch {
+        background: #e9e7e0;
+        color: #6b675e;
+      }
+      .panel-note {
+        font-size: 12px;
+        color: var(--ink-faint);
+        margin-top: 14px;
+        text-align: left;
+      }
+
+      /* ---------- offer ---------- */
+      .offer-card {
+        background: var(--card);
+        border: 1px solid var(--hairline);
+        border-radius: 22px;
+        padding: 52px 54px;
+        box-shadow: 0 30px 70px -40px rgba(33, 31, 26, 0.28);
+      }
+      @media (max-width: 640px) {
+        .offer-card {
+          padding: 34px 26px;
+        }
+      }
+      .offer-card h2 {
+        margin-bottom: 16px;
+      }
+      .offer-list {
+        list-style: none;
+        margin: 30px 0 8px;
+        border-top: 1px solid var(--hairline-soft);
+      }
+      .offer-list li {
+        display: grid;
+        grid-template-columns: 190px 1fr;
+        gap: 18px;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--hairline-soft);
+        font-size: 15.5px;
+      }
+      .offer-list li b {
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .offer-list li span {
+        color: var(--ink-soft);
+      }
+      @media (max-width: 560px) {
+        .offer-list li {
+          grid-template-columns: 1fr;
+          gap: 4px;
+        }
+      }
+      .honest {
+        margin-top: 34px;
+        padding-left: 20px;
+        border-left: 2px solid var(--moss-soft);
+        font-size: 15.5px;
+        color: var(--ink-soft);
+        max-width: 560px;
+        text-wrap: pretty;
+      }
+
+      /* ---------- for whom ---------- */
+      .whom {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        background: var(--hairline-soft);
+        border: 1px solid var(--hairline-soft);
+        border-radius: 16px;
+        overflow: hidden;
+        margin-top: 48px;
+      }
+      .whom div {
+        background: var(--paper);
+        padding: 28px 24px;
+      }
+      .whom h3 {
+        font-family: var(--serif);
+        font-weight: 560;
+        font-size: 17.5px;
+        margin-bottom: 6px;
+      }
+      .whom p {
+        font-size: 13.8px;
+        color: var(--ink-soft);
+        line-height: 1.55;
+      }
+      @media (max-width: 860px) {
+        .whom {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 480px) {
+        .whom {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ---------- personal ---------- */
+      .personal {
+        background: #232920;
+        color: #efede6;
+        padding: 140px 0;
+      }
+      .personal-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+        gap: clamp(44px, 7vw, 76px);
+        align-items: center;
+      }
+      .personal-visual img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        border-radius: 18px;
+        border: 1px solid rgba(250, 248, 243, 0.12);
+        box-shadow: 0 30px 70px -44px rgba(0, 0, 0, 0.8);
+      }
+      @media (max-width: 640px) {
+        .personal {
+          padding: 96px 0;
+        }
+      }
+      @media (max-width: 767px) {
+        .personal-layout {
+          display: block;
+        }
+        .personal-visual {
+          display: none;
+        }
+      }
+      .personal .eyebrow {
+        color: #a3b096;
+      }
+      .personal h2 {
+        color: #f6f4ec;
+        font-size: clamp(32px, 4.4vw, 46px);
+        font-weight: 380;
+      }
+      .personal .lede {
+        color: #c4c1b4;
+      }
+      .personal .quiet-line {
+        font-family: var(--serif);
+        font-weight: 340;
+        font-style: italic;
+        font-size: clamp(19px, 2.4vw, 23px);
+        color: #d9d6c8;
+        margin: 44px 0;
+        line-height: 1.55;
+        text-wrap: balance;
+      }
+      .wl {
+        display: flex;
+        gap: 12px;
+        max-width: 480px;
+        margin-top: 8px;
+      }
+      .wl input {
+        background: rgba(250, 248, 243, 0.07);
+        border: 1px solid rgba(250, 248, 243, 0.25);
+        border-radius: 999px;
+        padding: 15px 22px;
+        font-size: 15.5px;
+        color: #f6f4ec;
+        font-family: var(--sans);
+        outline: none;
+        transition: border-color 0.25s ease;
+        width: 100%;
+        min-width: 0;
+      }
+      .wl .form-field {
+        flex: 1;
+        min-width: 0;
+      }
+      .wl input::placeholder {
+        color: #8f8d80;
+      }
+      .wl input:focus {
+        border-color: #a3b096;
+        box-shadow: 0 0 0 3px rgba(163, 176, 150, 0.18);
+      }
+      .wl .btn {
+        background: #e9e6da;
+        color: #232920;
+        border-color: #e9e6da;
+      }
+      .wl .btn:hover {
+        background: #fff;
+        transform: translateY(-1px);
+      }
+      @media (max-width: 520px) {
+        .wl {
+          flex-direction: column;
+        }
+        .wl .btn {
+          text-align: center;
+        }
+      }
+      .personal .micro {
+        color: #8f8d80;
+      }
+      .wl .field-error {
+        color: #d6c6ad;
+        padding-left: 22px;
+      }
+      .form-ok {
+        display: none;
+        font-size: 16px;
+        color: #dfe4d2;
+        padding: 14px 0;
+      }
+      .form-err {
+        display: none;
+        font-size: 14px;
+        color: #cdb9a0;
+        padding: 10px 0;
+      }
+      .form-err a {
+        color: #e9e6da;
+      }
+      .form-field {
+        display: grid;
+        gap: 7px;
+      }
+      .field-error {
+        display: none;
+        font-size: 13px;
+        line-height: 1.35;
+        color: var(--danger);
+      }
+      .form-field.is-invalid .field-error {
+        display: block;
+      }
+      .form-field.is-invalid input,
+      .form-field.is-invalid textarea {
+        border-color: var(--danger);
+        background: var(--danger-bg);
+      }
+      .personal .form-field.is-invalid input {
+        background: rgba(250, 248, 243, 0.11);
+      }
+
+      /* ---------- pilot form ---------- */
+      .pilot-form {
+        margin-top: 44px;
+        display: grid;
+        gap: 14px;
+        max-width: 560px;
+      }
+      .pilot-form input,
+      .pilot-form textarea {
+        background: var(--card);
+        border: 1px solid var(--hairline);
+        border-radius: 14px;
+        padding: 14px 18px;
+        font-size: 15.5px;
+        font-family: var(--sans);
+        color: var(--ink);
+        outline: none;
+        width: 100%;
+        transition: border-color 0.25s ease;
+      }
+      .pilot-form input:focus,
+      .pilot-form textarea:focus {
+        border-color: var(--moss-soft);
+        box-shadow: 0 0 0 3px rgba(107, 122, 99, 0.16);
+      }
+      .pilot-form textarea {
+        min-height: 96px;
+        resize: vertical;
+      }
+      .pilot-form .row2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      @media (max-width: 560px) {
+        .pilot-form .row2 {
+          grid-template-columns: 1fr;
+        }
+      }
+      .pilot-ok {
+        display: none;
+        font-size: 16px;
+        color: var(--moss);
+        padding: 10px 0;
+      }
+      .pilot-err {
+        display: none;
+        font-size: 14px;
+        color: #7a5b3a;
+        padding: 8px 0;
+      }
+
+      /* ---------- footer ---------- */
+      footer {
+        border-top: 1px solid var(--hairline-soft);
+        padding: 48px 0 60px;
+      }
+      .foot {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .foot .l {
+        font-family: var(--serif);
+        letter-spacing: 0.14em;
+        font-weight: 560;
+        font-size: 15px;
+      }
+      .foot p,
+      .foot a {
+        font-size: 13.5px;
+        color: var(--ink-faint);
+        text-decoration: none;
+      }
+      .foot a:hover {
+        color: var(--ink);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .btn,
+        .wl input,
+        .pilot-form input,
+        .pilot-form textarea {
+          transition: none;
+        }
+        .btn:hover,
+        .wl .btn:hover {
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <nav aria-label="Primary">
+      <div class="nav-in">
+        <a class="mark" href="#top" aria-label="NUAMED home">
+          <svg width="22" height="22" viewBox="0 0 32 32">
+            <circle
+              cx="16"
+              cy="16"
+              r="11"
+              fill="none"
+              stroke="#44523f"
+              stroke-width="3"
+              stroke-dasharray="52 17"
+              stroke-linecap="round"
+            />
+            <circle cx="16" cy="16" r="3.4" fill="#44523f" />
+          </svg>
+          <span>NUAMED</span>
+        </a>
+        <div class="nav-links">
+          <a href="#how" class="hide-m">How it works</a>
+          <a href="#pilot" class="hide-m">The pilot</a>
+          <a href="#you">For you</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero" id="top">
+      <div class="wrap">
+        <div class="col">
+          <p class="eyebrow reveal">For the people who run places</p>
+          <h1 class="reveal">
+            We turn wellness cities, medical districts and founder campuses into
+            measurable health environments.
+          </h1>
+          <p class="lede reveal">
+            Your place already produces the signals — sleep, recovery, movement,
+            the rhythm of a resident's day. NUAMED closes the loop on them: it
+            learns each person's normal, intervenes at the moment it matters,
+            and writes back, honestly, what worked. Your infrastructure earns
+            its premium, provably.
+          </p>
+          <div class="reveal">
+            <a class="btn" href="#pilot">Request a pilot</a>
+            <p class="micro">
+              60–90 day instrumentation pilot &nbsp;·&nbsp; one cohort, one KPI
+              &nbsp;·&nbsp; outcomes contract
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="claim">
+        <div class="wrap">
+          <p class="reveal">
+            We track three hundred–plus health products. Each owns a fragment —
+            data without action, action without learning, memory without care.
+            <b>No one closes the loop.</b> That loop is what we build, and it is
+            the only thing we sell.
+          </p>
+        </div>
+      </div>
+
+      <div class="image-band">
+        <img
+          class="reveal"
+          src="assets/hero.jpg"
+          alt="Fog settles over forest and water, held in the morning light."
+          width="2400"
+          height="1000"
+          loading="lazy"
+        />
+      </div>
+
+      <section id="how">
+        <div class="wrap">
+          <div class="how-grid">
+            <div>
+              <p class="eyebrow reveal">How it works</p>
+              <h2 class="reveal">A loop, not a program.</h2>
+              <div style="margin-top: 44px">
+                <div class="step reveal">
+                  <div class="n">01</div>
+                  <div>
+                    <h3>Learn each person's normal</h3>
+                    <p>
+                      We read what your environment already collects —
+                      wearables, rooms, check-ins, the shape of a week. No new
+                      hardware to start, no forms, no onboarding theater.
+                    </p>
+                  </div>
+                </div>
+                <div class="step reveal">
+                  <div class="n">02</div>
+                  <div>
+                    <h3>Move at the right moment</h3>
+                    <p>
+                      When a weak signal drifts — sleep shortening, recovery
+                      flattening — the system acts then, quietly, through
+                      whatever your place already offers. Not a broadcast
+                      schedule. A moment, chosen.
+                    </p>
+                  </div>
+                </div>
+                <div class="step reveal">
+                  <div class="n">03</div>
+                  <div>
+                    <h3>Say what happened</h3>
+                    <p>
+                      Every intervention is logged and explained back in plain
+                      language — kept if it worked, stopped if it didn't, with
+                      the reason either way. The system gets better; the person
+                      sees why.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="reveal">
+              <div class="panel" aria-label="Example of a weekly readback">
+                <div class="panel-head">
+                  <span class="t">Weekly readback</span
+                  ><span class="d">Sun 19:00</span>
+                </div>
+                <div class="panel-body">
+                  <div class="msg">
+                    <span class="who">NUAMED</span>
+                    Your deep sleep has been under your usual range for four
+                    nights — it lines up with the later dinners this week. I
+                    moved your sauna slot to 17:30 and kept the earlier kitchen
+                    reminder. Wednesday and Thursday came back to normal.
+                  </div>
+                  <div class="msg">
+                    <span class="who">NUAMED</span>
+                    The cold-plunge suggestion from last month isn't earning its
+                    place — no measurable effect on your recovery in three
+                    weeks. I've stopped it.
+                  </div>
+                  <div class="msg quiet">
+                    Nothing needed from you. Reply if anything felt off.
+                  </div>
+                </div>
+              </div>
+              <p class="panel-note">
+                Illustrative. Live pilot screens land here as they ship.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="padding-top: 0">
+        <div class="wrap">
+          <div class="how-grid">
+            <div class="reveal" style="order: 0">
+              <div class="panel" aria-label="Example of an intervention ledger">
+                <div class="panel-head">
+                  <span class="t">Intervention ledger</span
+                  ><span class="d">Cohort A · Week 6</span>
+                </div>
+                <div class="panel-body">
+                  <div class="ledger-row">
+                    <span class="d">Jun 02</span>
+                    <span class="what"
+                      ><b>Earlier sauna window</b
+                      ><span>deep sleep drifting low, 12 residents</span></span
+                    >
+                    <span class="tag kept">kept</span>
+                  </div>
+                  <div class="ledger-row">
+                    <span class="d">Jun 09</span>
+                    <span class="what"
+                      ><b>Late-caffeine nudge</b
+                      ><span>only for the 6 it affected</span></span
+                    >
+                    <span class="tag kept">kept</span>
+                  </div>
+                  <div class="ledger-row">
+                    <span class="d">Jun 14</span>
+                    <span class="what"
+                      ><b>Cold plunge after training</b
+                      ><span>no recovery effect in 3 weeks</span></span
+                    >
+                    <span class="tag stopped">stopped</span>
+                  </div>
+                  <div class="ledger-row">
+                    <span class="d">Jun 21</span>
+                    <span class="what"
+                      ><b>Morning light walk</b
+                      ><span>2 weeks in — signal promising</span></span
+                    >
+                    <span class="tag watch">watching</span>
+                  </div>
+                </div>
+              </div>
+              <p class="panel-note">
+                Illustrative. The live ledger replaces this as pilots ship.
+              </p>
+            </div>
+            <div style="order: 1">
+              <p class="eyebrow reveal">The proof object</p>
+              <h2 class="reveal">Outcomes you can put in a contract.</h2>
+              <p class="lede reveal" style="margin-top: 24px">
+                The ledger is the product’s spine: what we did, why, and whether
+                it worked — kept, stopped, or still watching. It’s what lets a
+                pilot end with a number instead of a narrative, and what lets
+                your premium survive due diligence. Guests and residents see the
+                same honest record. Nothing is hidden from either side of the
+                contract.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pilot" style="padding-top: 20px">
+        <div class="wrap">
+          <div class="offer-card reveal">
+            <p class="eyebrow">The offer</p>
+            <h2>One place. One cohort. One number.</h2>
+            <p class="lede" style="margin-top: 10px">
+              A bounded instrumentation pilot — the smallest slice of your
+              environment that can prove the loop works.
+            </p>
+            <ul class="offer-list">
+              <li>
+                <b>60–90 days</b
+                ><span
+                  >long enough for the loop to learn; short enough to
+                  decide.</span
+                >
+              </li>
+              <li>
+                <b>One KPI, agreed first</b
+                ><span
+                  >we define success together before anything starts — sleep
+                  quality, recovery, return-intent. Your number, in
+                  writing.</span
+                >
+              </li>
+              <li>
+                <b>Your brand in front</b
+                ><span
+                  >the care carries your name. We are the layer underneath —
+                  residents meet your place, not our logo.</span
+                >
+              </li>
+              <li>
+                <b>Existing signals only</b
+                ><span
+                  >we start on what your environment already collects. Hardware,
+                  if ever, comes after proof.</span
+                >
+              </li>
+              <li>
+                <b>Outcomes contract</b
+                ><span
+                  >the pilot ends with a written readout against the KPI and a
+                  clean go / no-go. No auto-renewal, no lock-in.</span
+                >
+              </li>
+            </ul>
+            <p class="honest">
+              We don’t sell an operating-system takeover, and we won’t promise a
+              transformed campus. One bounded slice, measured honestly — that is
+              the whole offer, and the ledger is the judge.
+            </p>
+
+            <form class="pilot-form" id="pilotForm" novalidate>
+              <div class="row2">
+                <div class="form-field">
+                  <label class="sr-only" for="pilot-name">Your name</label>
+                  <input
+                    id="pilot-name"
+                    type="text"
+                    name="name"
+                    placeholder="Your name"
+                    autocomplete="name"
+                    required
+                    aria-describedby="pilot-name-error"
+                  />
+                  <span class="field-error" id="pilot-name-error"
+                    >Your name is required.</span
+                  >
+                </div>
+                <div class="form-field">
+                  <label class="sr-only" for="pilot-place">Your place</label>
+                  <input
+                    id="pilot-place"
+                    type="text"
+                    name="place"
+                    placeholder="Your place — city, district, campus"
+                    autocomplete="organization"
+                    required
+                    aria-describedby="pilot-place-error"
+                  />
+                  <span class="field-error" id="pilot-place-error"
+                    >Your place is required.</span
+                  >
+                </div>
+              </div>
+              <div class="form-field">
+                <label class="sr-only" for="pilot-email">Work email</label>
+                <input
+                  id="pilot-email"
+                  type="email"
+                  name="email"
+                  placeholder="Work email"
+                  autocomplete="email"
+                  inputmode="email"
+                  required
+                  aria-describedby="pilot-email-error"
+                />
+                <span class="field-error" id="pilot-email-error"
+                  >Enter a valid work email.</span
+                >
+              </div>
+              <div class="form-field">
+                <label class="sr-only" for="pilot-note"
+                  >What would you want to measure?</label
+                >
+                <textarea
+                  id="pilot-note"
+                  name="note"
+                  placeholder="What would you want to measure? (optional)"
+                ></textarea>
+              </div>
+              <div>
+                <button class="btn" type="submit">Request a pilot</button>
+                <p class="micro">
+                  A scoping conversation first — free, non-binding, 20 minutes.
+                </p>
+              </div>
+              <p class="pilot-ok" role="status">
+                Received. We’ll reply within two days with three questions about
+                your place.
+              </p>
+              <p class="pilot-err" role="alert">
+                Something failed on our side — email us directly and it will be
+                read:
+                <a href="mailto:konstantin.baltsat@gmail.com"
+                  >konstantin.baltsat@gmail.com</a
+                >
+              </p>
+            </form>
+          </div>
+
+          <div class="whom reveal">
+            <div>
+              <h3>Wellness cities</h3>
+              <p>
+                The premium is real — make it measurable, resident by resident.
+              </p>
+            </div>
+            <div>
+              <h3>Medical districts</h3>
+              <p>
+                Care that continues between visits, with a record clinicians can
+                read.
+              </p>
+            </div>
+            <div>
+              <h3>Founder campuses</h3>
+              <p>
+                Output follows sleep and recovery. Watch the cohort, not
+                slogans.
+              </p>
+            </div>
+            <div>
+              <h3>Longevity clinics</h3>
+              <p>
+                Extend the protocol into daily life — and prove adherence
+                happened.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="personal" id="you">
+        <div class="wrap">
+          <div class="personal-layout">
+            <div class="col" style="margin: 0; max-width: 640px">
+              <p class="eyebrow reveal">For you</p>
+              <h2 class="reveal">
+                We learn your normal, watch the weak signals, and close the loop
+                before you ask.
+              </h2>
+              <p class="quiet-line reveal">
+                Not another thing to check. An AI care relationship — quiet
+                while you live, present the moment it matters.
+              </p>
+              <p class="lede reveal">
+                NUAMED stays with you the way a good physician of an earlier
+                century did: it remembers, it notices, it acts small and early,
+                and once a week it tells you the truth — what it tried, what
+                worked, what it stopped. You are never managed by percentages.
+                You are known.
+              </p>
+              <form
+                class="wl reveal"
+                id="wlForm"
+                style="margin-top: 40px"
+                novalidate
+              >
+                <div class="form-field">
+                  <label class="sr-only" for="waitlist-email">Your email</label>
+                  <input
+                    id="waitlist-email"
+                    type="email"
+                    name="email"
+                    placeholder="you@..."
+                    autocomplete="email"
+                    inputmode="email"
+                    required
+                    aria-describedby="waitlist-email-error"
+                  />
+                  <span class="field-error" id="waitlist-email-error"
+                    >Enter a valid email.</span
+                  >
+                </div>
+                <button class="btn" type="submit">Join the waitlist</button>
+              </form>
+              <p class="micro reveal">
+                Private beta · Bali first · one email when your seat opens,
+                nothing else.
+              </p>
+              <p class="form-ok" role="status">
+                You’re on the list. One email when your seat opens — that’s all.
+              </p>
+              <p class="form-err" role="alert">
+                That didn’t go through — write to
+                <a href="mailto:konstantin.baltsat@gmail.com"
+                  >konstantin.baltsat@gmail.com</a
+                >
+                and you’re in.
+              </p>
+            </div>
+            <div class="personal-visual reveal">
+              <img
+                src="assets/care.jpg"
+                alt="A hand rests near a cup by a dusk window, held in warm shadow."
+                width="1200"
+                height="1500"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap foot">
+        <span class="l">NUAMED</span>
+        <p>Built and lived in daily by its founders, Bali.</p>
+        <a href="mailto:konstantin.baltsat@gmail.com"
+          >konstantin.baltsat@gmail.com</a
+        >
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var revealEls = document.querySelectorAll(".reveal");
+        var reducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        );
+        if ("IntersectionObserver" in window && !reducedMotion.matches) {
+          var io = new IntersectionObserver(
+            function (es) {
+              es.forEach(function (e) {
+                if (e.isIntersecting) {
+                  e.target.classList.add("in");
+                  io.unobserve(e.target);
+                }
+              });
+            },
+            { threshold: 0.12 },
+          );
+          revealEls.forEach(function (el) {
+            io.observe(el);
+          });
+        } else {
+          revealEls.forEach(function (el) {
+            el.classList.add("in");
+          });
+        }
+
+        var ENDPOINT =
+          "https://formsubmit.co/ajax/konstantin.baltsat@gmail.com";
+        function wire(formId, okSel, errSel, subject) {
+          var f = document.getElementById(formId);
+          if (!f) return;
+          f.addEventListener("submit", function (ev) {
+            ev.preventDefault();
+            var serverErr = document.querySelector(errSel);
+            serverErr.style.display = "none";
+            if (!validate(f)) return;
+            var data = {
+              _subject: subject,
+              _template: "table",
+              _captcha: "false",
+            };
+            new FormData(f).forEach(function (v, k) {
+              data[k] = v;
+            });
+            var btn = f.querySelector("button");
+            btn.disabled = true;
+            fetch(ENDPOINT, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+              body: JSON.stringify(data),
+            })
+              .then(function (r) {
+                if (!r.ok) throw 0;
+                return r.json();
+              })
+              .then(function () {
+                f.style.display = "none";
+                document.querySelector(okSel).style.display = "block";
+              })
+              .catch(function () {
+                btn.disabled = false;
+                serverErr.style.display = "block";
+              });
+          });
+        }
+        function validate(form) {
+          var firstInvalid = null;
+          form.querySelectorAll("input, textarea").forEach(function (field) {
+            var holder = field.closest(".form-field");
+            var value = field.value.trim();
+            var invalid =
+              (field.required && !value) ||
+              (field.type === "email" && value && !/.+@.+\..+/.test(value));
+            if (holder) holder.classList.toggle("is-invalid", invalid);
+            field.setAttribute("aria-invalid", invalid ? "true" : "false");
+            if (invalid && !firstInvalid) firstInvalid = field;
+          });
+          if (firstInvalid) {
+            firstInvalid.focus();
+            return false;
+          }
+          return true;
+        }
+        document.querySelectorAll("input, textarea").forEach(function (field) {
+          field.setAttribute("aria-invalid", "false");
+          field.addEventListener("input", function () {
+            var holder = field.closest(".form-field");
+            if (holder) holder.classList.remove("is-invalid");
+            field.setAttribute("aria-invalid", "false");
+          });
+        });
+        wire("pilotForm", ".pilot-ok", ".pilot-err", "NUAMED pilot request");
+        wire("wlForm", ".form-ok", ".form-err", "NUAMED waitlist");
+      })();
+    </script>
+  </body>
+</html>
