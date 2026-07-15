@@ -1,0 +1,1241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0d0f0e" />
+    <title>NUAMED — Investor Pitch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&amp;family=Manrope:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0d0f0e;
+        --ink: #f0ede5;
+        --muted: #aaa79e;
+        --gold: #c8b98a;
+        --line: rgba(200, 185, 138, 0.3);
+        --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+        --sans: "Manrope", "Helvetica Neue", Arial, sans-serif;
+        --pad-x: clamp(1.4rem, 5.8vw, 6.8rem);
+        --pad-y: clamp(1.4rem, 5.2vh, 4.2rem);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      a:focus-visible,
+      button:focus-visible {
+        outline: 1px solid var(--gold);
+        outline-offset: 5px;
+      }
+
+      .deck {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+        scroll-snap-type: y mandatory;
+        overscroll-behavior-y: contain;
+        touch-action: pan-y;
+        scrollbar-width: none;
+      }
+
+      .deck::-webkit-scrollbar {
+        display: none;
+      }
+
+      .slide {
+        position: relative;
+        isolation: isolate;
+        display: flex;
+        width: 100%;
+        min-width: 0;
+        height: 100vh;
+        height: 100svh;
+        overflow: hidden;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        background: var(--bg);
+      }
+
+      .slide::before {
+        position: absolute;
+        z-index: -2;
+        inset: 0;
+        background-image: var(--image);
+        background-position: var(--position, center);
+        background-size: cover;
+        content: "";
+        transform: scale(1.002);
+      }
+
+      .slide::after {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background: var(--veil, none);
+        content: "";
+        pointer-events: none;
+      }
+
+      .content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        min-width: 0;
+        padding: var(--pad-y) var(--pad-x);
+      }
+
+      .content--bottom {
+        justify-content: flex-end;
+        padding-bottom: clamp(3.8rem, 9vh, 7.5rem);
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      h1,
+      h2 {
+        font-family: var(--serif);
+        font-weight: 500;
+        letter-spacing: -0.035em;
+        text-wrap: balance;
+      }
+
+      h1 {
+        max-width: 9.6em;
+        font-size: clamp(3.2rem, 6.7vw, 7.4rem);
+        line-height: 0.88;
+      }
+
+      h2 {
+        max-width: 12em;
+        font-size: clamp(2.8rem, 5.7vw, 6.4rem);
+        line-height: 0.91;
+      }
+
+      .gold {
+        color: var(--gold);
+      }
+
+      .support {
+        max-width: 46rem;
+        margin-top: clamp(1.1rem, 2.5vh, 2rem);
+        color: var(--muted);
+        font-size: clamp(0.82rem, 1.15vw, 1.08rem);
+        font-weight: 500;
+        line-height: 1.65;
+        letter-spacing: 0.015em;
+      }
+
+      .support strong {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      .hero {
+        --image: url("assets/01-hero.webp");
+        --position: 56% center;
+        --veil: linear-gradient(
+          90deg,
+          rgba(13, 15, 14, 0.42) 0%,
+          rgba(13, 15, 14, 0.12) 38%,
+          transparent 62%
+        );
+      }
+
+      .hero h1 {
+        max-width: 8.8em;
+      }
+
+      .problem {
+        --image: url("assets/02-problem.webp");
+        --position: center;
+      }
+
+      .problem .content {
+        align-items: center;
+        text-align: center;
+      }
+
+      .problem h2 {
+        max-width: 13em;
+      }
+
+      .problem .support {
+        max-width: 55rem;
+        color: rgba(240, 237, 229, 0.66);
+      }
+
+      .market {
+        background:
+          radial-gradient(
+            circle at 85% 18%,
+            rgba(200, 185, 138, 0.09),
+            transparent 30%
+          ),
+          linear-gradient(125deg, #0d0f0e 0%, #111612 60%, #0a0c0b 100%);
+      }
+
+      .market::before {
+        background-image:
+          radial-gradient(
+            circle at 70% 43%,
+            rgba(200, 185, 138, 0.05),
+            transparent 36%
+          ),
+          repeating-radial-gradient(
+            circle at 78% 50%,
+            transparent 0 4.6rem,
+            rgba(200, 185, 138, 0.055) 4.66rem 4.72rem
+          );
+      }
+
+      .stat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: clamp(1.6rem, 4vw, 5rem);
+        align-items: end;
+        width: 100%;
+      }
+
+      .stat {
+        min-width: 0;
+        padding-top: 1.1rem;
+        border-top: 1px solid var(--line);
+      }
+
+      .stat-number {
+        display: block;
+        color: var(--gold);
+        font-family: var(--serif);
+        font-size: clamp(3.5rem, 8vw, 8rem);
+        font-weight: 500;
+        line-height: 0.82;
+        letter-spacing: -0.06em;
+        white-space: nowrap;
+      }
+
+      .stat-label {
+        display: block;
+        max-width: 17rem;
+        margin-top: 1rem;
+        color: var(--ink);
+        font-size: clamp(0.78rem, 1.15vw, 1.05rem);
+        line-height: 1.45;
+      }
+
+      .stat-label a {
+        text-decoration-color: rgba(200, 185, 138, 0.45);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.25em;
+      }
+
+      .why-now {
+        --image: url("assets/04-gulf.webp");
+        --position: center;
+        --veil: linear-gradient(
+          90deg,
+          rgba(6, 9, 8, 0.88) 0%,
+          rgba(6, 9, 8, 0.6) 31%,
+          rgba(6, 9, 8, 0.06) 60%,
+          transparent 78%
+        );
+      }
+
+      .why-now .content {
+        justify-content: flex-start;
+        padding-top: clamp(4.6rem, 12vh, 9rem);
+      }
+
+      .why-now h2 {
+        max-width: 7.2em;
+      }
+
+      .why-list {
+        display: grid;
+        gap: 0.75rem;
+        max-width: 34rem;
+        margin-top: clamp(1.2rem, 3vh, 2.3rem);
+        padding: 0;
+        list-style: none;
+      }
+
+      .why-list li {
+        display: grid;
+        grid-template-columns: 5.8rem 1fr;
+        gap: 1rem;
+        align-items: baseline;
+        padding-top: 0.7rem;
+        border-top: 1px solid rgba(240, 237, 229, 0.15);
+        color: var(--muted);
+        font-size: clamp(0.77rem, 1vw, 0.97rem);
+        line-height: 1.45;
+      }
+
+      .why-list a {
+        color: var(--ink);
+        text-decoration-color: rgba(200, 185, 138, 0.5);
+        text-underline-offset: 0.22em;
+      }
+
+      .why-key {
+        color: var(--gold);
+        font-family: var(--serif);
+        font-size: 1.45em;
+        white-space: nowrap;
+      }
+
+      .niche {
+        --image: url("assets/05-niche.webp");
+        --position: 58% center;
+        --veil: linear-gradient(
+          90deg,
+          rgba(7, 10, 9, 0.89) 0%,
+          rgba(7, 10, 9, 0.62) 32%,
+          rgba(7, 10, 9, 0.12) 57%,
+          transparent 75%
+        );
+      }
+
+      .niche h2 {
+        max-width: 7.5em;
+      }
+
+      .radar {
+        margin-top: clamp(1.1rem, 2.5vh, 2rem);
+        color: var(--gold);
+        font-size: clamp(0.76rem, 1vw, 0.95rem);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .names {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.72rem 1.2rem;
+        max-width: 42rem;
+        margin-top: clamp(1rem, 2.4vh, 1.8rem);
+      }
+
+      .names a {
+        border-bottom: 1px solid rgba(240, 237, 229, 0.35);
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: clamp(1.15rem, 2vw, 1.85rem);
+        line-height: 1.15;
+        text-decoration: none;
+        transition:
+          color 180ms ease,
+          border-color 180ms ease;
+      }
+
+      .names a:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+
+      .deal {
+        --image: url("assets/06-deal.webp");
+        --position: center;
+        --veil: linear-gradient(
+          90deg,
+          rgba(6, 9, 8, 0.87) 0%,
+          rgba(6, 9, 8, 0.58) 32%,
+          rgba(6, 9, 8, 0.06) 60%,
+          transparent 74%
+        );
+      }
+
+      .deal h2 {
+        max-width: 8.3em;
+      }
+
+      .proof-line {
+        max-width: 39rem;
+        margin-top: clamp(1.2rem, 2.8vh, 2.2rem);
+        color: var(--muted);
+        font-size: clamp(0.82rem, 1.15vw, 1.05rem);
+        line-height: 1.7;
+      }
+
+      .proof-line a,
+      .offer a {
+        color: var(--ink);
+        text-decoration-color: rgba(200, 185, 138, 0.55);
+        text-underline-offset: 0.26em;
+      }
+
+      .offer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem 1.25rem;
+        align-items: baseline;
+        max-width: 42rem;
+        margin-top: clamp(1.3rem, 3vh, 2.4rem);
+        padding-top: 1rem;
+        border-top: 1px solid var(--line);
+        color: var(--gold);
+        font-family: var(--serif);
+        font-size: clamp(1.25rem, 2.35vw, 2rem);
+        line-height: 1.18;
+      }
+
+      .product {
+        background:
+          radial-gradient(
+            circle at 82% 52%,
+            rgba(200, 185, 138, 0.08),
+            transparent 32%
+          ),
+          linear-gradient(135deg, #0d0f0e 0%, #121713 52%, #090b0a 100%);
+      }
+
+      .product .content {
+        align-items: center;
+        text-align: center;
+      }
+
+      .product h2 {
+        max-width: 10em;
+        font-size: clamp(2.5rem, 5vw, 5.7rem);
+      }
+
+      .loop {
+        display: grid;
+        grid-template-columns: repeat(9, auto);
+        gap: clamp(0.4rem, 1.2vw, 1.4rem);
+        align-items: center;
+        justify-content: center;
+        width: min(100%, 78rem);
+        margin-top: clamp(2.2rem, 6vh, 5rem);
+      }
+
+      .loop-node {
+        display: grid;
+        place-items: center;
+        aspect-ratio: 1;
+        width: clamp(4.5rem, 9vw, 8rem);
+        border: 1px solid rgba(200, 185, 138, 0.36);
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 40% 35%,
+          rgba(200, 185, 138, 0.11),
+          rgba(13, 15, 14, 0.72)
+        );
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: clamp(0.95rem, 1.55vw, 1.35rem);
+        box-shadow: 0 0 5rem rgba(200, 185, 138, 0.04);
+      }
+
+      .loop-arrow {
+        position: relative;
+        display: block;
+        width: clamp(1.4rem, 3vw, 3.5rem);
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          rgba(200, 185, 138, 0.22),
+          var(--gold)
+        );
+      }
+
+      .loop-arrow::after {
+        position: absolute;
+        top: -3px;
+        right: -1px;
+        width: 7px;
+        height: 7px;
+        border-top: 1px solid var(--gold);
+        border-right: 1px solid var(--gold);
+        content: "";
+        transform: rotate(45deg);
+      }
+
+      .growth {
+        --image: url("assets/08-growth.webp");
+        --position: center;
+        --veil: linear-gradient(
+          180deg,
+          rgba(7, 9, 8, 0.13) 0%,
+          transparent 45%,
+          rgba(7, 9, 8, 0.88) 100%
+        );
+      }
+
+      .growth .content {
+        justify-content: space-between;
+      }
+
+      .growth h2 {
+        max-width: 7em;
+      }
+
+      .growth-bottom {
+        width: 100%;
+      }
+
+      .growth-paths {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+        border-top: 1px solid rgba(240, 237, 229, 0.26);
+      }
+
+      .growth-paths span {
+        padding-top: 0.9rem;
+        color: var(--ink);
+        font-family: var(--serif);
+        font-size: clamp(1.18rem, 2.1vw, 1.9rem);
+      }
+
+      .growth-paths span:nth-child(2) {
+        text-align: center;
+      }
+
+      .growth-paths span:nth-child(3) {
+        text-align: right;
+      }
+
+      .growth .support {
+        margin-top: 0.8rem;
+        color: var(--gold);
+      }
+
+      .live {
+        --image: url("assets/09-live.webp");
+        --position: 58% center;
+        --veil: linear-gradient(
+          90deg,
+          rgba(6, 9, 8, 0.55) 0%,
+          rgba(6, 9, 8, 0.12) 45%,
+          transparent 67%
+        );
+      }
+
+      .live h2 {
+        max-width: 8em;
+      }
+
+      .site-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        width: fit-content;
+        max-width: 100%;
+        margin-top: clamp(1.5rem, 3.5vh, 2.8rem);
+        padding-bottom: 0.35rem;
+        border-bottom: 1px solid var(--line);
+        color: var(--gold);
+        font-size: clamp(0.76rem, 1vw, 0.92rem);
+        letter-spacing: 0.07em;
+        text-decoration: none;
+      }
+
+      .site-link::after {
+        content: "↗";
+      }
+
+      .chrome {
+        position: fixed;
+        z-index: 20;
+        right: clamp(1rem, 2.2vw, 2rem);
+        bottom: clamp(1rem, 2.2vw, 2rem);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .counter {
+        min-width: 3.4rem;
+        color: rgba(240, 237, 229, 0.62);
+        font-size: 0.68rem;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.12em;
+      }
+
+      .nav-button {
+        display: grid;
+        place-items: center;
+        width: 2.55rem;
+        height: 2.55rem;
+        padding: 0;
+        border: 1px solid rgba(240, 237, 229, 0.2);
+        border-radius: 50%;
+        background: rgba(13, 15, 14, 0.48);
+        color: var(--ink);
+        cursor: pointer;
+        backdrop-filter: blur(12px);
+        transition:
+          border-color 160ms ease,
+          background 160ms ease,
+          opacity 160ms ease;
+      }
+
+      .nav-button:hover {
+        border-color: var(--gold);
+        background: rgba(13, 15, 14, 0.78);
+      }
+
+      .nav-button:disabled {
+        cursor: default;
+        opacity: 0.28;
+      }
+
+      .nav-button svg {
+        width: 1rem;
+        height: 1rem;
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.4;
+      }
+
+      .progress {
+        position: fixed;
+        z-index: 20;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: rgba(240, 237, 229, 0.08);
+      }
+
+      .progress-bar {
+        display: block;
+        width: 11.111%;
+        height: 100%;
+        background: var(--gold);
+        transform-origin: left center;
+        transition: transform 240ms ease;
+      }
+
+      @media (max-width: 760px) {
+        :root {
+          --pad-x: 1.35rem;
+          --pad-y: 1.35rem;
+        }
+
+        h1 {
+          max-width: 7.8em;
+          font-size: clamp(3.1rem, 15vw, 4.5rem);
+          line-height: 0.87;
+        }
+
+        h2 {
+          max-width: 8em;
+          font-size: clamp(2.7rem, 13vw, 4rem);
+          line-height: 0.9;
+        }
+
+        .support {
+          font-size: 0.78rem;
+          line-height: 1.5;
+        }
+
+        .hero {
+          --position: 70% center;
+          --veil: linear-gradient(
+            180deg,
+            rgba(7, 10, 9, 0.4) 0%,
+            rgba(7, 10, 9, 0.74) 54%,
+            rgba(7, 10, 9, 0.94) 100%
+          );
+        }
+
+        .hero .content,
+        .live .content {
+          justify-content: flex-end;
+          padding-bottom: 5.6rem;
+        }
+
+        .problem {
+          --position: 65% center;
+          --veil: linear-gradient(
+            180deg,
+            rgba(7, 10, 9, 0.18),
+            rgba(7, 10, 9, 0.82)
+          );
+        }
+
+        .problem .content {
+          align-items: flex-start;
+          justify-content: flex-end;
+          padding-bottom: 5.6rem;
+          text-align: left;
+        }
+
+        .stat-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .stat {
+          display: grid;
+          grid-template-columns: 46% 54%;
+          gap: 1rem;
+          align-items: baseline;
+          padding-top: 0.75rem;
+        }
+
+        .stat-number {
+          font-size: clamp(3.1rem, 15vw, 4.6rem);
+        }
+
+        .stat:nth-child(3) .stat-number {
+          font-size: clamp(2.85rem, 13vw, 4rem);
+        }
+
+        .stat-label {
+          margin-top: 0;
+          font-size: 0.78rem;
+        }
+
+        .why-now {
+          --position: 70% center;
+          --veil: linear-gradient(
+            180deg,
+            rgba(5, 8, 7, 0.45) 0%,
+            rgba(5, 8, 7, 0.88) 53%,
+            rgba(5, 8, 7, 0.98) 100%
+          );
+        }
+
+        .why-now .content {
+          justify-content: flex-end;
+          padding-top: 1.35rem;
+          padding-bottom: 4.8rem;
+        }
+
+        .why-list {
+          gap: 0.5rem;
+          margin-top: 1rem;
+        }
+
+        .why-list li {
+          grid-template-columns: 4.5rem 1fr;
+          gap: 0.65rem;
+          padding-top: 0.5rem;
+          font-size: 0.68rem;
+          line-height: 1.35;
+        }
+
+        .niche {
+          --position: 66% center;
+          --veil: linear-gradient(
+            180deg,
+            rgba(5, 8, 7, 0.32) 0%,
+            rgba(5, 8, 7, 0.75) 47%,
+            rgba(5, 8, 7, 0.98) 100%
+          );
+        }
+
+        .niche .content {
+          justify-content: flex-end;
+          padding-bottom: 4.8rem;
+        }
+
+        .radar {
+          margin-top: 0.8rem;
+          font-size: 0.66rem;
+          letter-spacing: 0.05em;
+        }
+
+        .names {
+          gap: 0.45rem 0.8rem;
+          margin-top: 0.85rem;
+        }
+
+        .names a {
+          font-size: 1.02rem;
+        }
+
+        .deal {
+          --position: 64% center;
+          --veil: linear-gradient(
+            180deg,
+            rgba(5, 8, 7, 0.32) 0%,
+            rgba(5, 8, 7, 0.8) 51%,
+            rgba(5, 8, 7, 0.98) 100%
+          );
+        }
+
+        .deal .content {
+          justify-content: flex-end;
+          padding-bottom: 4.8rem;
+        }
+
+        .proof-line {
+          margin-top: 0.9rem;
+          font-size: 0.72rem;
+          line-height: 1.45;
+        }
+
+        .offer {
+          gap: 0.25rem 0.7rem;
+          margin-top: 0.9rem;
+          padding-top: 0.65rem;
+          font-size: 1.12rem;
+        }
+
+        .product h2 {
+          font-size: clamp(2.5rem, 11.6vw, 3.5rem);
+        }
+
+        .loop {
+          grid-template-columns: 1fr;
+          gap: 0;
+          margin-top: 1.2rem;
+        }
+
+        .loop-node {
+          aspect-ratio: auto;
+          width: min(100%, 16rem);
+          min-height: 3.05rem;
+          border-radius: 999px;
+          font-size: 1rem;
+        }
+
+        .loop-arrow {
+          width: 1px;
+          height: 0.75rem;
+          background: linear-gradient(
+            180deg,
+            rgba(200, 185, 138, 0.22),
+            var(--gold)
+          );
+        }
+
+        .loop-arrow::after {
+          top: auto;
+          right: -3px;
+          bottom: -1px;
+          transform: rotate(135deg);
+        }
+
+        .growth {
+          --position: center;
+          --veil: linear-gradient(
+            180deg,
+            rgba(5, 8, 7, 0.34) 0%,
+            rgba(5, 8, 7, 0.08) 33%,
+            rgba(5, 8, 7, 0.95) 100%
+          );
+        }
+
+        .growth .content {
+          padding-bottom: 4.8rem;
+        }
+
+        .growth-paths {
+          grid-template-columns: 1fr;
+          gap: 0.25rem;
+          padding-top: 0.6rem;
+        }
+
+        .growth-paths span,
+        .growth-paths span:nth-child(2),
+        .growth-paths span:nth-child(3) {
+          padding-top: 0;
+          font-size: 1.08rem;
+          text-align: left;
+        }
+
+        .live {
+          --position: 70% center;
+          --veil: linear-gradient(
+            180deg,
+            rgba(5, 8, 7, 0.18) 0%,
+            rgba(5, 8, 7, 0.72) 55%,
+            rgba(5, 8, 7, 0.96) 100%
+          );
+        }
+
+        .chrome {
+          right: 0.85rem;
+          bottom: 0.85rem;
+          gap: 0.5rem;
+        }
+
+        .nav-button {
+          width: 2.35rem;
+          height: 2.35rem;
+        }
+      }
+
+      @media (max-height: 680px) and (max-width: 760px) {
+        h1 {
+          font-size: 3rem;
+        }
+
+        h2 {
+          font-size: 2.55rem;
+        }
+
+        .why-list li {
+          font-size: 0.62rem;
+        }
+
+        .loop-node {
+          min-height: 2.65rem;
+        }
+
+        .names a {
+          font-size: 0.93rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .deck {
+          scroll-behavior: auto;
+        }
+
+        .progress-bar,
+        .names a,
+        .nav-button {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="deck" id="deck" aria-label="NUAMED investor pitch deck">
+      <section class="slide hero" aria-label="Slide 1 of 9: NUAMED">
+        <div class="content">
+          <h1>
+            NUAMED — The AI health companion that already knows your context.
+          </h1>
+        </div>
+      </section>
+
+      <section class="slide problem" aria-label="Slide 2 of 9: The problem">
+        <div class="content">
+          <h2>
+            Everyone is closing the longevity loop.
+            <span class="gold">The loop is starving for context.</span>
+          </h2>
+          <p class="support">
+            Rich signals, zero action. Human-powered loops see one hour of your
+            week. Conversation without grounded, continuous data.
+          </p>
+        </div>
+      </section>
+
+      <section class="slide market" aria-label="Slide 3 of 9: The market">
+        <div class="content">
+          <div class="stat-grid">
+            <div class="stat">
+              <span class="stat-number">$2T</span>
+              <span class="stat-label">
+                Asia’s wellness market ·
+                <a
+                  href="https://www.globalwellnesssummit.com/2026-global-wellness-summit/"
+                  >2026 Global Wellness Summit</a
+                >
+              </span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">$1.8T</span>
+              <span class="stat-label">
+                <a
+                  href="https://globalwellnessinstitute.org/press-room/press-releases/wellness-real-estate-market-2/"
+                  >Wellness real estate by 2030</a
+                >
+              </span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">10–25%</span>
+              <span class="stat-label">Price premium no one can prove</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide why-now" aria-label="Slide 4 of 9: Why now">
+        <div class="content">
+          <h2>Why now.</h2>
+          <ul class="why-list">
+            <li>
+              <span class="why-key">2026</span>
+              <a
+                href="https://www.dubaidet.gov.ae/en/newsroom/press-releases/dubai-longevity-authority"
+                >Dubai Longevity Authority</a
+              >
+            </li>
+            <li>
+              <span class="why-key">4,155 km²</span>
+              <span>
+                <a href="https://www.redseaglobal.com/en/portfolio/amaala/"
+                  >AMAALA</a
+                >
+                ·
+                <a
+                  href="https://www.cliniquelaprairie.com/destinations/saudi-arabia-amaala/"
+                  >Clinique La Prairie</a
+                >
+                anchor
+              </span>
+            </li>
+            <li>
+              <span class="why-key">NEOM</span>
+              <span>
+                <a
+                  href="https://www.neom.com/en-us/our-business/sectors/health-and-wellbeing"
+                  >Health &amp; Wellbeing</a
+                >
+                ·
+                <a href="https://hevolution.com/">Hevolution</a>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="slide niche" aria-label="Slide 5 of 9: The niche">
+        <div class="content">
+          <h2>The niche, <span class="gold">by name.</span></h2>
+          <p class="radar">25 priority · 53 SEA · 38 network societies</p>
+          <nav class="names" aria-label="Priority environments">
+            <a href="https://nuanu.com">Nuanu</a>
+            <a
+              href="https://kek.go.id/media/album/the-sanur-sez-is-the-first-health-sez-in-indonesia"
+              >Sanur Health SEZ</a
+            >
+            <a href="https://theedgemalaysia.com/node/669592"
+              >KL Wellness City</a
+            >
+            <a href="https://ns.com/dashboard">Network School</a>
+            <a href="https://gmc.bt/">Gelephu</a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="slide deal" aria-label="Slide 6 of 9: Proven deal shape">
+        <div class="content">
+          <h2>
+            Operators buy a <span class="gold">bounded outcome</span>, not a
+            health OS.
+          </h2>
+          <p class="proof-line">
+            <a
+              href="https://www.businesswire.com/news/home/20250708866507/en/Equinox-Hotels-Launches-The-Sleep-Lab-with-Dr.-Matthew-Walker-A-Scientific-Approach-to-Transforming-Sleep"
+              >Eight Sleep × Equinox</a
+            >
+            — $1,700/night ·
+            <a href="https://www.timeshifter.com/partners">Timeshifter</a> ×
+            United / IHG / Six Senses
+          </p>
+          <p class="offer">
+            <span>60–90-day pilot</span><span>one KPI</span
+            ><span>~$15k → ~$80k ARR</span>
+          </p>
+        </div>
+      </section>
+
+      <section class="slide product" aria-label="Slide 7 of 9: The product">
+        <div class="content">
+          <h2>
+            Passive context in. <span class="gold">Executed care out.</span>
+          </h2>
+          <div
+            class="loop"
+            aria-label="Signal to decision to execution to readback to changed rule"
+          >
+            <div class="loop-node">signal</div>
+            <span class="loop-arrow" aria-hidden="true">&#8203;</span>
+            <div class="loop-node">decision</div>
+            <span class="loop-arrow" aria-hidden="true">&#8203;</span>
+            <div class="loop-node">execution</div>
+            <span class="loop-arrow" aria-hidden="true">&#8203;</span>
+            <div class="loop-node">readback</div>
+            <span class="loop-arrow" aria-hidden="true">&#8203;</span>
+            <div class="loop-node">changed rule</div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="slide growth"
+        aria-label="Slide 8 of 9: Three ways this grows"
+      >
+        <div class="content">
+          <h2>Three ways this grows.</h2>
+          <div class="growth-bottom">
+            <div class="growth-paths">
+              <span>Environment pilots</span>
+              <span>Clinic continuity</span>
+              <span>Direct membership</span>
+            </div>
+            <p class="support">One core owned in all three. Asset-light.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide live" aria-label="Slide 9 of 9: Live today">
+        <div class="content">
+          <h2>
+            Not a deck promise — <span class="gold">on TestFlight now.</span>
+          </h2>
+          <a class="site-link" href="https://baltsat.github.io/nuamed-site/"
+            >baltsat.github.io/nuamed-site</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <div class="progress" aria-hidden="true">
+      <span class="progress-bar" id="progress"></span>
+    </div>
+    <nav class="chrome" aria-label="Slide navigation">
+      <span class="counter" id="counter">01 / 09</span>
+      <button
+        class="nav-button"
+        id="previous"
+        type="button"
+        aria-label="Previous slide"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m6 15 6-6 6 6" />
+        </svg>
+      </button>
+      <button
+        class="nav-button"
+        id="next"
+        type="button"
+        aria-label="Next slide"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </button>
+    </nav>
+
+    <script>
+      const deck = document.querySelector("#deck");
+      const slides = [...document.querySelectorAll(".slide")];
+      const previous = document.querySelector("#previous");
+      const next = document.querySelector("#next");
+      const counter = document.querySelector("#counter");
+      const progress = document.querySelector("#progress");
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      );
+      let current = 0;
+      let touchStartY = null;
+
+      const setCurrent = (index) => {
+        current = Math.max(0, Math.min(index, slides.length - 1));
+        counter.textContent = `${String(current + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+        progress.style.transform = `scaleX(${current + 1})`;
+        previous.disabled = current === 0;
+        next.disabled = current === slides.length - 1;
+      };
+
+      const goTo = (index) => {
+        const target = Math.max(0, Math.min(index, slides.length - 1));
+        slides[target].scrollIntoView({
+          behavior: reducedMotion.matches ? "auto" : "smooth",
+          block: "start",
+        });
+        setCurrent(target);
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (visible) setCurrent(slides.indexOf(visible.target));
+        },
+        { root: deck, threshold: [0.5, 0.72] },
+      );
+
+      slides.forEach((slide) => observer.observe(slide));
+      previous.addEventListener("click", () => goTo(current - 1));
+      next.addEventListener("click", () => goTo(current + 1));
+
+      window.addEventListener("keydown", (event) => {
+        const target = event.target;
+        if (
+          target instanceof HTMLAnchorElement ||
+          target instanceof HTMLButtonElement
+        )
+          return;
+        if (["ArrowDown", "ArrowRight", "PageDown", " "].includes(event.key)) {
+          event.preventDefault();
+          goTo(current + 1);
+        }
+        if (["ArrowUp", "ArrowLeft", "PageUp"].includes(event.key)) {
+          event.preventDefault();
+          goTo(current - 1);
+        }
+        if (event.key === "Home") {
+          event.preventDefault();
+          goTo(0);
+        }
+        if (event.key === "End") {
+          event.preventDefault();
+          goTo(slides.length - 1);
+        }
+      });
+
+      deck.addEventListener(
+        "touchstart",
+        (event) => {
+          touchStartY = event.changedTouches[0].clientY;
+        },
+        { passive: true },
+      );
+
+      deck.addEventListener(
+        "touchend",
+        (event) => {
+          if (touchStartY === null) return;
+          const distance = touchStartY - event.changedTouches[0].clientY;
+          touchStartY = null;
+          if (Math.abs(distance) < 48) return;
+          goTo(current + (distance > 0 ? 1 : -1));
+        },
+        { passive: true },
+      );
+
+      setCurrent(0);
+    </script>
+  </body>
+</html>
