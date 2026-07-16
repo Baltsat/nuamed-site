@@ -646,6 +646,68 @@
         transition: transform 240ms ease;
       }
 
+      .tooltip-term {
+        text-decoration-line: underline;
+        text-decoration-style: dotted;
+        text-decoration-color: rgba(200, 185, 138, 0.55);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.24em;
+        cursor: help;
+      }
+
+      .names a.tooltip-term {
+        border-bottom-color: transparent;
+        text-decoration-line: underline;
+      }
+
+      .tooltip-term:focus-visible {
+        border-radius: 2px;
+        outline: 1px solid var(--gold);
+        outline-offset: 4px;
+      }
+
+      .tooltip-card {
+        position: fixed;
+        z-index: 40;
+        top: 0;
+        left: 0;
+        width: max-content;
+        max-width: min(340px, calc(100vw - 24px));
+        padding: 0.85rem 0.95rem 0.9rem;
+        border: 1px solid rgba(200, 185, 138, 0.32);
+        border-radius: 2px;
+        background: #151817;
+        box-shadow: 0 14px 38px rgba(0, 0, 0, 0.38);
+        color: var(--ink);
+        font-size: 14px;
+        line-height: 1.48;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-4px);
+        visibility: hidden;
+        transition:
+          opacity 120ms ease,
+          transform 120ms ease,
+          visibility 0s linear 120ms;
+      }
+
+      .tooltip-card.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+        transition-delay: 0s;
+      }
+
+      .tooltip-kicker {
+        margin-bottom: 0.3rem;
+        color: var(--gold);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        line-height: 1.35;
+        text-transform: uppercase;
+      }
+
       @media (max-width: 760px) {
         :root {
           --pad-x: 1.35rem;
@@ -928,7 +990,8 @@
 
         .progress-bar,
         .names a,
-        .nav-button {
+        .nav-button,
+        .tooltip-card {
           transition: none;
         }
       }
@@ -961,7 +1024,14 @@
         <div class="content">
           <div class="stat-grid">
             <div class="stat">
-              <span class="stat-number">$2T</span>
+              <span
+                class="stat-number tooltip-term"
+                tabindex="0"
+                aria-describedby="tooltip-card"
+                data-tooltip-title="Asia's wellness economy"
+                data-tooltip-body="The 2026 Global Wellness Summit (Phuket) frame; longevity tourism is its fastest-heating slice."
+                >$2T</span
+              >
               <span class="stat-label">
                 Asia’s wellness market ·
                 <a
@@ -971,7 +1041,14 @@
               </span>
             </div>
             <div class="stat">
-              <span class="stat-number">$1.8T</span>
+              <span
+                class="stat-number tooltip-term"
+                tabindex="0"
+                aria-describedby="tooltip-card"
+                data-tooltip-title="Wellness real estate"
+                data-tooltip-body="Global Wellness Institute projection: past $1T in 2027, ~$1.8T by 2030."
+                >$1.8T</span
+              >
               <span class="stat-label">
                 <a
                   href="https://globalwellnessinstitute.org/press-room/press-releases/wellness-real-estate-market-2/"
@@ -980,7 +1057,14 @@
               </span>
             </div>
             <div class="stat">
-              <span class="stat-number">10–25%</span>
+              <span
+                class="stat-number tooltip-term"
+                tabindex="0"
+                aria-describedby="tooltip-card"
+                data-tooltip-title="The unproven premium"
+                data-tooltip-body="GWI: typical price premium of wellness residences — charged today, never proven by outcomes. That missing proof layer is NUAMED's product."
+                >10–25%</span
+              >
               <span class="stat-label">Price premium no one can prove</span>
             </div>
           </div>
@@ -995,13 +1079,24 @@
               <span class="why-key">2026</span>
               <a
                 href="https://www.dubaidet.gov.ae/en/newsroom/press-releases/dubai-longevity-authority"
+                class="tooltip-term"
+                tabindex="0"
+                aria-describedby="tooltip-card"
+                data-tooltip-title="Sovereign demand"
+                data-tooltip-body="Established by law in 2026 to regulate and supervise longevity, wellness and advanced-health sectors — state programs become procurement."
                 >Dubai Longevity Authority</a
               >
             </li>
             <li>
               <span class="why-key">4,155 km²</span>
               <span>
-                <a href="https://www.redseaglobal.com/en/portfolio/amaala/"
+                <a
+                  href="https://www.redseaglobal.com/en/portfolio/amaala/"
+                  class="tooltip-term"
+                  tabindex="0"
+                  aria-describedby="tooltip-card"
+                  data-tooltip-title="AMAALA, Red Sea"
+                  data-tooltip-body="4,155 km² ultra-luxury wellness destination; 8 hotels in phase one, ~30 at completion; Clinique La Prairie anchors its longevity clinic."
                   >AMAALA</a
                 >
                 ·
@@ -1013,7 +1108,14 @@
               </span>
             </li>
             <li>
-              <span class="why-key">NEOM</span>
+              <span
+                class="why-key tooltip-term"
+                tabindex="0"
+                aria-describedby="tooltip-card"
+                data-tooltip-title="Saudi healthspan stack"
+                data-tooltip-body="NEOM's Health &amp; Wellbeing sector frames preventive, personalized care; Hevolution funds healthspan science at scale."
+                >NEOM</span
+              >
               <span>
                 <a
                   href="https://www.neom.com/en-us/our-business/sectors/health-and-wellbeing"
@@ -1030,18 +1132,61 @@
       <section class="slide niche" aria-label="Slide 5 of 9: The niche">
         <div class="content">
           <h2>The niche, <span class="gold">by name.</span></h2>
-          <p class="radar">25 priority · 53 SEA · 38 network societies</p>
+          <p
+            class="radar tooltip-term"
+            tabindex="0"
+            aria-describedby="tooltip-card"
+            data-tooltip-title="Our radar"
+            data-tooltip-body="Proprietary map: 25 priority projects, 53 SEA developments, 23 global analogues, 38 network societies, 10 proven B2B motions."
+          >
+            25 priority · 53 SEA · 38 network societies
+          </p>
           <nav class="names" aria-label="Priority environments">
-            <a href="https://nuanu.com">Nuanu</a>
+            <a
+              href="https://nuanu.com"
+              class="tooltip-term"
+              tabindex="0"
+              aria-describedby="tooltip-card"
+              data-tooltip-title="Nuanu Creative City, Bali"
+              data-tooltip-body="Our home testbed — first named measurable health environment; one villa cohort, one KPI, a stakeholder-readable ledger."
+              >Nuanu</a
+            >
             <a
               href="https://kek.go.id/media/album/the-sanur-sez-is-the-first-health-sez-in-indonesia"
+              class="tooltip-term"
+              tabindex="0"
+              aria-describedby="tooltip-card"
+              data-tooltip-title="Indonesia's first health SEZ"
+              data-tooltip-body="Anchored by Bali International Hospital — medical tourism's missing continuity layer after discharge."
               >Sanur Health SEZ</a
             >
-            <a href="https://theedgemalaysia.com/node/669592"
+            <a
+              href="https://theedgemalaysia.com/node/669592"
+              class="tooltip-term"
+              tabindex="0"
+              aria-describedby="tooltip-card"
+              data-tooltip-title="The literal category buyer"
+              data-tooltip-body="Purpose-built wellness city in Bukit Jalil: hospital, retirement resort and residences under one masterplan."
               >KL Wellness City</a
             >
-            <a href="https://ns.com/dashboard">Network School</a>
-            <a href="https://gmc.bt/">Gelephu</a>
+            <a
+              href="https://ns.com/dashboard"
+              class="tooltip-term"
+              tabindex="0"
+              aria-describedby="tooltip-card"
+              data-tooltip-title="Founder campus, Forest City"
+              data-tooltip-body="Balaji-ecosystem school — cohort-native performance loops as proof-of-transformation."
+              >Network School</a
+            >
+            <a
+              href="https://gmc.bt/"
+              class="tooltip-term"
+              tabindex="0"
+              aria-describedby="tooltip-card"
+              data-tooltip-title="Gelephu Mindfulness City, Bhutan"
+              data-tooltip-body="A city whose brand is wellbeing — with no way yet to prove it."
+              >Gelephu</a
+            >
           </nav>
         </div>
       </section>
@@ -1055,15 +1200,34 @@
           <p class="proof-line">
             <a
               href="https://www.businesswire.com/news/home/20250708866507/en/Equinox-Hotels-Launches-The-Sleep-Lab-with-Dr.-Matthew-Walker-A-Scientific-Approach-to-Transforming-Sleep"
+              class="tooltip-term"
+              tabindex="0"
+              aria-describedby="tooltip-card"
+              data-tooltip-title="The proven slice"
+              data-tooltip-body="Equinox Hotels' Sleep Lab (with Dr. Matthew Walker) runs on Eight Sleep inside $1,700/night rooms — a bounded sleep outcome, not a platform takeover."
               >Eight Sleep × Equinox</a
             >
             — $1,700/night ·
-            <a href="https://www.timeshifter.com/partners">Timeshifter</a> ×
-            United / IHG / Six Senses
+            <a
+              href="https://www.timeshifter.com/partners"
+              class="tooltip-term"
+              tabindex="0"
+              aria-describedby="tooltip-card"
+              data-tooltip-title="Embedded outcome"
+              data-tooltip-body="Jet-lag protocols inside United, IHG, Six Senses, Lufthansa Group — operators integrate bounded outcomes, never a health OS."
+              >Timeshifter</a
+            >
+            × United / IHG / Six Senses
           </p>
           <p class="offer">
-            <span>60–90-day pilot</span><span>one KPI</span
-            ><span>~$15k → ~$80k ARR</span>
+            <span
+              class="tooltip-term"
+              tabindex="0"
+              aria-describedby="tooltip-card"
+              data-tooltip-title="Our offer, same shape"
+              data-tooltip-body="One cohort, one KPI agreed in writing, outcomes contract — ~$15k pilot expanding to ~$80k ARR per property."
+              >60–90-day pilot</span
+            ><span>one KPI</span><span>~$15k → ~$80k ARR</span>
           </p>
         </div>
       </section>
@@ -1077,15 +1241,55 @@
             class="loop"
             aria-label="Signal to decision to execution to readback to changed rule"
           >
-            <div class="loop-node">signal</div>
+            <div
+              class="loop-node tooltip-term"
+              tabindex="0"
+              aria-describedby="tooltip-card"
+              data-tooltip-title="Passive in"
+              data-tooltip-body="Apple Health, calendar, location, messaging — granted once, flowing forever."
+            >
+              signal
+            </div>
             <span class="loop-arrow" aria-hidden="true">&#8203;</span>
-            <div class="loop-node">decision</div>
+            <div
+              class="loop-node tooltip-term"
+              tabindex="0"
+              aria-describedby="tooltip-card"
+              data-tooltip-title="Uncertainty-gated"
+              data-tooltip-body="The agentic brain decides act or hold — silence is a valid, learned output."
+            >
+              decision
+            </div>
             <span class="loop-arrow" aria-hidden="true">&#8203;</span>
-            <div class="loop-node">execution</div>
+            <div
+              class="loop-node tooltip-term"
+              tabindex="0"
+              aria-describedby="tooltip-card"
+              data-tooltip-title="The world acts"
+              data-tooltip-body="A booking, a protocol, a nudge through the right channel — executed by the environment or service."
+            >
+              execution
+            </div>
             <span class="loop-arrow" aria-hidden="true">&#8203;</span>
-            <div class="loop-node">readback</div>
+            <div
+              class="loop-node tooltip-term"
+              tabindex="0"
+              aria-describedby="tooltip-card"
+              data-tooltip-title="Honest confirmation"
+              data-tooltip-body="Did it happen, did it help — no shame, no gamification."
+            >
+              readback
+            </div>
             <span class="loop-arrow" aria-hidden="true">&#8203;</span>
-            <div class="loop-node">changed rule</div>
+            <div
+              class="loop-node tooltip-term"
+              tabindex="0"
+              aria-describedby="tooltip-card"
+              data-tooltip-title="Compounding memory"
+              data-tooltip-body="Every loop updates the personal policy; the system provably learns."
+            >
+              changed rule
+            </div>
           </div>
         </div>
       </section>
@@ -1098,9 +1302,30 @@
           <h2>Three ways this grows.</h2>
           <div class="growth-bottom">
             <div class="growth-paths">
-              <span>Environment pilots</span>
-              <span>Clinic continuity</span>
-              <span>Direct membership</span>
+              <span
+                class="tooltip-term"
+                tabindex="0"
+                aria-describedby="tooltip-card"
+                data-tooltip-title="Path A"
+                data-tooltip-body="Closed environments — Nuanu first, then the SEA radar; the place executes, NUAMED decides and learns."
+                >Environment pilots</span
+              >
+              <span
+                class="tooltip-term"
+                tabindex="0"
+                aria-describedby="tooltip-card"
+                data-tooltip-title="Path B"
+                data-tooltip-body="The between-visits layer for longevity clinics and resorts — adherence, readback, re-test lift."
+                >Clinic continuity</span
+              >
+              <span
+                class="tooltip-term"
+                tabindex="0"
+                aria-describedby="tooltip-card"
+                data-tooltip-title="Path C"
+                data-tooltip-body="The personal companion — live on TestFlight today."
+                >Direct membership</span
+              >
             </div>
             <p class="support">One core owned in all three. Asset-light.</p>
           </div>
@@ -1146,6 +1371,16 @@
       </button>
     </nav>
 
+    <aside
+      class="tooltip-card"
+      id="tooltip-card"
+      role="tooltip"
+      aria-hidden="true"
+    >
+      <div class="tooltip-kicker" id="tooltip-kicker"></div>
+      <div id="tooltip-body"></div>
+    </aside>
+
     <script>
       const deck = document.querySelector("#deck");
       const slides = [...document.querySelectorAll(".slide")];
@@ -1153,11 +1388,101 @@
       const next = document.querySelector("#next");
       const counter = document.querySelector("#counter");
       const progress = document.querySelector("#progress");
+      const slideNav = document.querySelector(".chrome");
+      const tooltip = document.querySelector("#tooltip-card");
+      const tooltipKicker = document.querySelector("#tooltip-kicker");
+      const tooltipBody = document.querySelector("#tooltip-body");
+      const tooltipTerms = [...document.querySelectorAll(".tooltip-term")];
       const reducedMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
       );
       let current = 0;
       let touchStartY = null;
+      let activeTooltipTerm = null;
+      let touchedTooltipTerm = null;
+      let preserveTooltipOnScroll = false;
+      let focusScrollTimer = null;
+
+      const intersects = (first, second) =>
+        first.left < second.right &&
+        first.right > second.left &&
+        first.top < second.bottom &&
+        first.bottom > second.top;
+
+      const positionTooltip = () => {
+        if (!activeTooltipTerm) return;
+        const margin = 12;
+        const gap = 10;
+        const targetRect = activeTooltipTerm.getBoundingClientRect();
+        const tooltipRect = tooltip.getBoundingClientRect();
+        const chromeRect = slideNav.getBoundingClientRect();
+        const maxLeft = window.innerWidth - margin - tooltipRect.width;
+        const left = Math.max(
+          margin,
+          Math.min(
+            targetRect.left + targetRect.width / 2 - tooltipRect.width / 2,
+            maxLeft,
+          ),
+        );
+        const below = targetRect.bottom + gap;
+        const above = targetRect.top - gap - tooltipRect.height;
+        const roomBelow = window.innerHeight - margin - below;
+        const roomAbove = targetRect.top - gap - margin;
+        const candidates =
+          tooltipRect.height <= roomBelow || roomBelow >= roomAbove
+            ? [below, above]
+            : [above, below];
+        const makeRect = (top) => ({
+          top,
+          right: left + tooltipRect.width,
+          bottom: top + tooltipRect.height,
+          left,
+        });
+        let top = candidates.find(
+          (candidate) =>
+            candidate >= margin &&
+            candidate + tooltipRect.height <= window.innerHeight - margin &&
+            !intersects(makeRect(candidate), chromeRect),
+        );
+
+        if (top === undefined) top = candidates[0];
+        top = Math.max(
+          margin,
+          Math.min(top, window.innerHeight - margin - tooltipRect.height),
+        );
+        if (intersects(makeRect(top), chromeRect)) {
+          top = Math.max(margin, chromeRect.top - gap - tooltipRect.height);
+        }
+
+        tooltip.style.left = `${left}px`;
+        tooltip.style.top = `${top}px`;
+      };
+
+      const showTooltip = (term) => {
+        activeTooltipTerm = term;
+        tooltipKicker.textContent = term.dataset.tooltipTitle;
+        tooltipBody.textContent = term.dataset.tooltipBody;
+        tooltip.classList.add("is-visible");
+        tooltip.setAttribute("aria-hidden", "false");
+        positionTooltip();
+      };
+
+      const hideTooltip = () => {
+        tooltip.classList.remove("is-visible");
+        tooltip.setAttribute("aria-hidden", "true");
+        activeTooltipTerm = null;
+        touchedTooltipTerm = null;
+        preserveTooltipOnScroll = false;
+        window.clearTimeout(focusScrollTimer);
+      };
+
+      const settleTooltipFocus = () => {
+        preserveTooltipOnScroll = false;
+        if (activeTooltipTerm && document.activeElement === activeTooltipTerm) {
+          setCurrent(slides.indexOf(activeTooltipTerm.closest(".slide")));
+          positionTooltip();
+        }
+      };
 
       const setCurrent = (index) => {
         current = Math.max(0, Math.min(index, slides.length - 1));
@@ -1168,6 +1493,7 @@
       };
 
       const goTo = (index) => {
+        hideTooltip();
         const target = Math.max(0, Math.min(index, slides.length - 1));
         slides[target].scrollIntoView({
           behavior: reducedMotion.matches ? "auto" : "smooth",
@@ -1190,7 +1516,74 @@
       previous.addEventListener("click", () => goTo(current - 1));
       next.addEventListener("click", () => goTo(current + 1));
 
+      tooltipTerms.forEach((term) => {
+        term.addEventListener("pointerenter", (event) => {
+          if (event.pointerType === "mouse" || event.pointerType === "pen") {
+            showTooltip(term);
+          }
+        });
+        term.addEventListener("pointerleave", (event) => {
+          if (
+            (event.pointerType === "mouse" || event.pointerType === "pen") &&
+            document.activeElement !== term
+          ) {
+            hideTooltip();
+          }
+        });
+        term.addEventListener("focus", () => {
+          const slideIndex = slides.indexOf(term.closest(".slide"));
+          if (slideIndex !== current) {
+            preserveTooltipOnScroll = true;
+            setCurrent(slideIndex);
+            window.clearTimeout(focusScrollTimer);
+            focusScrollTimer = window.setTimeout(settleTooltipFocus, 160);
+          }
+          showTooltip(term);
+        });
+        term.addEventListener("blur", hideTooltip);
+        term.addEventListener("pointerup", (event) => {
+          if (
+            event.pointerType === "mouse" ||
+            term instanceof HTMLAnchorElement
+          )
+            return;
+          if (touchedTooltipTerm === term) {
+            hideTooltip();
+          } else {
+            showTooltip(term);
+            touchedTooltipTerm = term;
+          }
+        });
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (!event.target.closest(".tooltip-term")) hideTooltip();
+      });
+
+      deck.addEventListener(
+        "scroll",
+        () => {
+          if (
+            preserveTooltipOnScroll &&
+            activeTooltipTerm &&
+            document.activeElement === activeTooltipTerm
+          ) {
+            positionTooltip();
+            window.clearTimeout(focusScrollTimer);
+            focusScrollTimer = window.setTimeout(settleTooltipFocus, 160);
+            return;
+          }
+          hideTooltip();
+        },
+        { passive: true },
+      );
+      window.addEventListener("resize", positionTooltip, { passive: true });
+
       window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          hideTooltip();
+          return;
+        }
         const target = event.target;
         if (
           target instanceof HTMLAnchorElement ||
